@@ -96,7 +96,7 @@ export class Canvas {
     // draw screen
     this.copyBuffer.unbindTextures()
     webgl.setRenderTarget(null)
-    this.mesh.render({ wire: false })
+    this.mesh.render()
   }
 
   dispose() {

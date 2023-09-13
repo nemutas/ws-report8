@@ -1,0 +1,91 @@
+@use '../mixins/media.scss' as *;
+
+.home__canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.home__link {
+  --color: #fff;
+
+  user-select: none;
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  font-size: max(1.5rem, 15px);
+  color: var(--color);
+  opacity: 0.3;
+
+  @include sp {
+    bottom: 2rem;
+    right: 2rem;
+    font-size: min(3rem, 15px);
+  }
+
+  @include hoverable {
+    transition: opacity 0.3s ease;
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--color);
+      transform: scale(0, 1);
+      transform-origin: right top;
+      transition: transform 0.3s;
+    }
+    &:hover {
+      opacity: 1;
+      &::after {
+        transform-origin: left top;
+        transform: scale(1, 1);
+      }
+    }
+  }
+}
+
+.home__annotation {
+  user-select: none;
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  font-size: max(1.5rem, 15px);
+  color: #fff;
+  opacity: 0.3;
+}
+
+.home__fps {
+  user-select: none;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: max(1.5rem, 15px);
+  color: #fff;
+  opacity: 0.3;
+  font-variant-numeric: tabular-nums;
+}
+
+.home__mouse {
+  --x: 9999px;
+  --y: 9999px;
+
+  pointer-events: none;
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  translate: -50% -50%;
+  width: 4rem;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: #fff;
+  opacity: 0.2;
+  transition-property: opacity, scale;
+  transition-duration: 0.2s;
+
+  &.active {
+    opacity: 0.8;
+    scale: 0.75;
+  }
+}
